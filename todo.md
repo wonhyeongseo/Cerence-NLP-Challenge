@@ -1,4 +1,5 @@
 # TODO
+
 - Add to grammar
   - `ko.gram` & `ko-Romanized.gram`
     - [ ] new verb '불러' (sing)
@@ -19,10 +20,10 @@
   - [x] add `jsgf-gen` directory
 - Update files
   - `utterance-check.sh`
-    - [ ] **(working)** use `flameshot` to automate screenshots
+    - [x] use `script` to automate output capture
   - `README.md`
-    - [ ] **(working)** add section 5.3 installation of `flameshot`
-    - [x] Merge section 5.4.1 and 2 into a table
+    - [x] convert screenshot md table to html for code-blocks
+    - [x] merge section 5.4.1 and 2 into a table
 - Update CV
   1. [ ] resize emojis in `nlu-cv-cerence-signed.pdf` or
   2. [ ] edit `cv-cerence-signed.pdf` to include email, phone links and the new job title.
