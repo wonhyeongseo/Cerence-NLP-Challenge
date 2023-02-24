@@ -1,5 +1,4 @@
 # TODO
-
 - Add to grammar
   - `ko.gram` & `ko-Romanized.gram`
     - [ ] new verb '불러' (sing)
@@ -10,7 +9,14 @@
     - [ ] run `utterance-check.sh`
     - [ ] generate new `code/utterances.pdf`
   - new commit:
-    - [ ] generate `directory.tree`
+    - [x] generate `directory-tree.log`
+      1. ```bash
+         ls -I "jsgf-gen*" -I "*.pdf" -glX -R | awk -F " " '{ if (!($NF+0==$NF)) { print $NF } }'
+         ```
+      2. (chosen)
+         ```bash
+         tree -I '*.pdf' -I 'jsgf-gen' --filesfirst
+         ```
     - [ ] generate `git.log`
     - [ ] generate new `code.pdf` // for updated 'Directory tree' and 'Git log' section
     - [ ] move all `*.pdf`s to `./pdf/` directory
