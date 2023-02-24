@@ -1,11 +1,14 @@
 # Submission Repository
 
-This repository contains the final submission for the technical challenge. The contents of this repository are licensed under [proprietary license](LICENSE). My Cerence NLP Challenge solution extends a JSGF grammar and localizes it to Korean. The minimal dependency approach meets the task requirements and allows for future improvements. The code is easy to understand and extend, with a report suggesting advanced techniques, such as pre-trained language models and neural architectures.
+This repository contains the final submission for the technical challenge. The contents of this repository are licensed under [proprietary license](LICENSE).
+
+My Cerence NLP Challenge solution extends a JSGF grammar and localizes it to Korean. The minimal dependency approach meets the task requirements and allows for future improvements. The code is easy to understand and extend, with a report suggesting advanced techniques, such as pre-trained language models and neural architectures.
 
 ## Contents
 
 - `wonhyeongseo.zip.asc`: Encrypted zip file containing final reports, code, generated utterances, and CV.
 - `todo.md`: Log of progress during development, without actual code.
+  You may scroll through it in an interactive way [here](https://github.githistory.xyz/wonhyeongseo/Cerence-NLP-Challenge/blob/main/todo.md).
 
 ## Instructions for Decrypting `wonhyeongseo.zip.asc`
 
