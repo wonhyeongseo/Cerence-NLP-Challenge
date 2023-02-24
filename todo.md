@@ -22,8 +22,7 @@
   - `utterance-check.sh`
     - [x] use `script` to automate output capture
   - `README.md`
-    - [x] convert screenshot md table to html for code-blocks
-    - [x] merge section 5.4.1 and 2 into a table
+    - [x] revert screenshot md table to section 5.3.1 and 2
 - Update CV
   1. [ ] resize emojis in `nlu-cv-cerence-signed.pdf` or
   2. [ ] edit `cv-cerence-signed.pdf` to include email, phone links and the new job title.
