@@ -19,8 +19,9 @@
   - [x] add `jsgf-gen` directory
 - Update files
   - `utterance-check.sh`
-    - [ ] **(working)** use `scrot` to automate screenshots // update `README.md` to include installation of `scrot` -> use `flameshot`
+    - [ ] **(working)** use `flameshot` to automate screenshots
   - `README.md`
+    - [ ] **(working)** add section 5.3 installation of `flameshot`
     - [x] Merge section 5.4.1 and 2 into a table
 - Update CV
   1. [ ] resize emojis in `nlu-cv-cerence-signed.pdf` or
