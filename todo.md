@@ -34,6 +34,10 @@
     - [x] generate new `code.pdf` // for updated 'Directory tree' and 'Git log' section
     - [x] move all `*.pdf`s to `./pdfs/` directory
     - [x] push the (**gpg passphrase encrypted**) pdf directory to public repo
+    - [ ] remove automatic Windows insertions of CR (`\r`). _pre commit also needed._
+      ```bash
+      find . -type f -name '*.sh' -exec sed -i 's/\r$//g' {} \;
+      ```
 - Create `.gitignore` file
   - [x] add `jsgf-gen` directory
 - Update files
@@ -41,6 +45,6 @@
     - [x] use `script` to automate output capture
   - `README.md`
     - [x] revert screenshot md table to section 5.3.1 and 2 for output
-- Update CV
+- (**wip**) Update CV
   1. [ ] resize emojis in `nlu-cv-cerence-signed.pdf` or
-  2. [ ] edit `cv-cerence-signed.pdf` to include email, phone links and the new job title.
+  2. [ ] (**wip**) edit `cv-cerence-signed.pdf` to include email, phone links and the new job title.
