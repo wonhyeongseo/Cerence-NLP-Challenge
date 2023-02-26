@@ -1,0 +1,7 @@
+- repo: local
+  hooks:
+  - id: my-custom-hook
+    name: My Custom Hook
+    entry: custom-hook.sh
+    language: script
+    stages: [commit]

@@ -11,7 +11,7 @@
     - [ ] new verb '불러' (sing)
 - Add git hook for
   - `README.pdf`:
-    - [ ] _(pending check)_ remind to edit `README.pdf` links after update.
+    - [ ] (**wip**) remind to edit `README.pdf` links after update. **echo reminder if `zip -T` comes out positive and just change 5th line of this todo to be empty.**
   - `*.gram` or `*.py` `*.sh`:
     - [ ] run `utterance-check.sh`
     - [ ] generate new `(code|utterances).pdf`
