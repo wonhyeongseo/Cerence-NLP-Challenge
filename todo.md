@@ -11,7 +11,7 @@
     - [ ] new verb '불러' (sing)
 - Add git hook for
   - `README.pdf`:
-    - [ ] _(pending check)_ remind to edit `README.pdf` links after update.
+    - [ ] (**wip**) remind to edit `README.pdf` links after update. **echo reminder if `zip -jrfv ./wonhyeongseo.zip *.pdf | grep 'freshening' | cut -d ' ' -f 2 | cut -d '.' -f 1` comes out positive and just change 5th line of this todo to be empty.**
   - `*.gram` or `*.py` `*.sh`:
     - [ ] run `utterance-check.sh`
     - [ ] generate new `(code|utterances).pdf`
@@ -43,7 +43,7 @@
     - [x] push the (**gpg passphrase encrypted**) pdf directory to public repo
           **check code**:
           ```bash
-          zip -jrf ./wonhyeongseo.zip *.pdf
+          zip -jrfv ./wonhyeongseo.zip *.pdf
           gpg -o ./wonhyeongseo.zip.asc --symmetric --cipher-algo AES256 ./wonhyeongseo.zip
           rm -rf ../check/*; cp ./wonhyeongseo.zip.asc ../check/
           gpg --decrypt ../check/wonhyeongseo.zip.asc > ../check/wonhyeongseo.zip
