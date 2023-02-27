@@ -1,37 +1,97 @@
 #!/bin/bash
 
-echo "Hello world"
-# set -x
+# Define custom-hook functions
 
-# # Define the path to the README.md file
-# README_PATH="./markdown/README.md"
-# TODO_PATH="../public/todo.md"
+# Function to remove carriage return characters from all script, python,
+# grammer, and text files in the private directory.
+remove_carriage_return() {
+    find ../private -type f \( -name '*.sh' -o -name '*.py' -o -name '*.gram' -o \
+                               -name '*.txt' \) -exec sed -i 's/\r$//g' {} \;
+}
 
-# # Get the hash of the latest commit to README.md
-# latest_commit=$(git rev-list -n 1 HEAD -- $README_PATH)
+# Function to generate git and directory tree logs in the private directory,
+# and check the utterances for any changes in the python and grammar files.
+generate_logs_n_utterances() {
+    # Generate git log and save it to private/git.log
+    git --git-dir=../private/.git log > ../private/git.log
 
-# # Check if the latest commit hash is different from the previous hash
-# if [ "$latest_commit" != "$(cat .latest_commit)" ]; then
-#     # Get the current status of README.pdf from the todo file
-#     status=$(sed -n '5p' $TODO_PATH | cut -d ':' -f 2)
+    # Generate directory tree log and save it to private/directory-tree.log
+    export dt_file='../private/directory-tree.log'
+    tree -I '*.pdf' -I 'jsgf-gen' --filesfirst > $dt_file
+    echo -n "$(perl -ne 'print unless $. == 1; \
+               chomp if eof && /^$/' $dt_file)" > $dt_file
+    unset dt_file
 
-#     # Check if README.pdf has been edited
-#     if [[ "$status" == " NOT EDITED" ]]; then
-#         echo "WARNING: README.pdf has not been edited yet."
-#     fi
+    # Check if there are changes in the python or grammar files in the cached
+    # changes, and if so, run the utterance check for each language.
+    if [[ -n $(git --git-dir=../private/.git --work-tree=../private diff \
+                   --cached --name-only | grep -E '\.py$|\.gram$') ]]; then
+        for lang in en ko; do
+            bash ../private/utterance-check.sh -m $lang;
+            echo $lang;
+        done
+        echo "Please generate 'utterances.pdf' again"
+    fi
+    echo "Please generate 'code.pdf' again"
+    exit 2
+}
 
-#     # Prompt for input
-#     read -p "Have you manually processed README.pdf? (y/n) " input
 
-#     # Update todo file based on input
-#     if [[ "$input" == "y" ]]; then
-#         sed -i '5s/.*/- `README.pdf`: EDITED/' $TODO_PATH
-#         echo "Status updated: README.pdf has been manually processed."
-#     else
-#         sed -i '5s/.*/- `README.pdf`: NOT EDITED/' $TODO_PATH
-#         echo "Status updated: README.pdf has NOT been manually processed."
-#     fi
+# Function to remind the user to update the README.pdf links
+# if they haven't already.
+remind_readme() {
+    # If README.pdf is updated in wonhyeongseo.zip,
+    # update the 5th line of todo.md to be unchecked.
+    if [[ $(zip -jrfv ./wonhyeongseo.zip *.pdf |
+            grep 'freshening' |
+            cut -d ' ' -f 2) == *"README.pdf"* ]]; then
+        sed -i '5s/.*/- [ ] `README.pdf` links/' todo.md
+    fi
+}
 
-#     # Write the latest commit hash to a file
-#     echo "$latest_commit" > .latest_commit
-# fi
+# Function to check if the README.pdf links have been edited manually.
+links_edited() {
+    # If the 5th line of todo.md is not checked, remind the user to
+    # manually edit the pdf links inside README.pdf.
+    if [[ $(sed -n '5p' todo.md ) != *"[x]"* ]]; then
+        echo "Please edit the pdf links inside README.pdf manually"
+        exit 1
+    fi
+}
+
+# Function to encrypt the wonhyeongseo.zip file for uploading.
+encrypt_zip() {
+    # If the wonhyeongseo.zip file doesn't exist, remind the user and exit.
+    if [[ ! -f "wonhyeongseo.zip" ]]; then
+        echo "wonhyeongseo.zip not found!"
+        exit 1
+    fi
+
+    # Encrypt the wonhyeongseo.zip file with AES256 cipher algorithm
+    # and save the encrypted file to wonhyeongseo.zip.asc
+    gpg -o ./wonhyeongseo.zip.asc --symmetric --cipher-algo AES256 wonhyeongseo.zip
+}
+
+# Run custom-hook functions based on hook ids
+
+for hook_id in "$@"; do
+    case $hook_id in
+        remove-carriage-return)
+            remove_carriage_return
+            ;;
+        generate-pdfs)
+            generate_logs_n_utterances
+            ;;
+        remind-readme)
+            remind_readme
+            ;;
+        links-edited)
+            links_edited
+            ;;
+        encrypt-zip)
+            encrypt_zip
+            ;;
+    esac
+done
+
+exit 0

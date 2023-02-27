@@ -1,8 +1,31 @@
 repos:
 - repo: local
   hooks:
-    - id: my-custom-hook
-      name: My Custom Hook
-      entry: custom-hook.sh
+    - id: remove-carriage-return
+      name: Remove CR characters from executables
+      entry: custom-hook.sh --remove-carriage-return
       language: script
       stages: [commit]
+    - id: generate-logs-n-utterances
+      name: Generate logs and utterances for final submission
+      entry: custom-hook.sh --generate-pdfs
+      language: script
+      require_serial: true
+      stages: [commit]
+      verbose: true
+    - id: remind-readme
+      name: Remind to edit README.pdf links
+      entry: custom-hook.sh --remind-readme
+      language: script
+      stages: [commit]
+    - id: links-edited
+      name: Check if README.pdf links were manually edited
+      entry: custom-hook.sh --links-edited
+      language: script
+      stages: [push]
+    - id: encrypt-zip
+      name: Encrypt zip file for upload
+      entry: custom-hook.sh --encrypt-zip
+      language: script
+      stages: [push]
+    
