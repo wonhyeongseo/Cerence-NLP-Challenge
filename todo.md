@@ -9,7 +9,7 @@
 - ### Add to grammar
 
   - `ko.gram` & `ko-Romanized.gram`
-    - [ ] new verb '불러' (sing)
+    - [x] new verb '불러' (sing)
 
 - ### [x] Add git hook for stages
   Implemented via `custom-hook.sh`
