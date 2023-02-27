@@ -76,6 +76,9 @@
   - #### `README.md`
 
       - [x] revert screenshot md table to section 5.3.1 and 2 for output
+      - [ ] add example to 4.1a ambiguity (pun intended)
+      - [ ] improve upon 4.2 to include complicataions of spacing + particle
+            (조사, 접사). Also expand upon morphological analysis.
 
   - #### `code.md`
 
