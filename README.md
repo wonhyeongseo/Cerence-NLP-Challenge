@@ -39,7 +39,7 @@ Follow these steps:
 
 1. Retrieve the passphrase from the candidate.
 2. Open a terminal or command prompt and navigate to the directory where the `wonhyeongseo.zip.asc` file is saved.
-3. Choose one of the following two methods to decrypt the file:
+3. Choose one of the following three methods to decrypt the file:
 
 - The easiest option is to use a [GUI](https://gnupg.org/software/frontends.html) like Kleopatra for Windows. It comes with [GPG4Win](https://www.gpg4win.org/) and provides a simple interface to decrypt the file.
 
