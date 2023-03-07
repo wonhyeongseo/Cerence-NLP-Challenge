@@ -6,7 +6,7 @@
 # grammer, and text files in the private directory.
 remove_carriage_return() {
     find ../private -type f \( -name '*.sh' -o -name '*.py' -o -name '*.gram' -o \
-                               -name '*.txt' \) -exec sed -i 's/\r$//g' {} \;
+                               -name '*.txt' \) -exec dos2unix {} \;
 }
 
 # Function to generate git and directory tree logs in the private directory,
